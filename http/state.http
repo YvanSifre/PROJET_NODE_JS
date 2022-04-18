@@ -1,0 +1,14 @@
+###Ajout/Création d'un état de message
+POST http://localhost:3000/state/test5 HTTP/1.1
+
+### Suppression d'un etat
+DELETE http://localhost:3000/state/10 HTTP/1.1
+
+###Liste des états
+GET http://localhost:3000/state HTTP/1.1
+
+###Label de l'etat en fonction de son id
+GET http://localhost:3000/state/10 HTTP/1.1
+
+###Met a jour un etat
+PUT  http://localhost:3000/state/299?label=pret HTTP/1.1

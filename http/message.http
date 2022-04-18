@@ -1,0 +1,5 @@
+### Affiche le messsage by id
+GET http://localhost:3000/message/1 HTTP/1.1
+
+### Supprime un message
+DELETE http://localhost:3000/message/1 HTTP/1.1

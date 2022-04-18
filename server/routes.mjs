@@ -2,6 +2,7 @@ import { loadContact, loadAllContact, deleteContact, updateContact, addContact }
 import { loadMessageByid, deleteMessage } from "./controllers/message/message.mjs"
 import { addList, loadAllList, deleteList, loadList, updateList } from "./controllers/listContact/listeContact.mjs"
 
+import { loadState, loadStateByid, createState, deleteState, updateState } from "./controllers/state/state.mjs"
 import express from 'express'
 import { loadTemplateById, loadTemplate, deleteTemplate, addTemplate, updateTemplate } from "./controllers/model-template/model-template.mjs"
 
@@ -166,7 +167,7 @@ router.delete('/message/:id', (req, res) => {
   }
 })
 
-//Template
+// ------------------  Template ----------------------------//
 
 router.get('/model/:id', (req, res) => {
   try {
@@ -215,6 +216,58 @@ router.post('/model', (req, res) => {
   } catch (error) {
     res.send(404)
     console.log(error)
+  }
+})
+
+// ------------------  State ----------------------------//
+
+router.post('/state/:StateLabel', (req, res) => {
+  try {
+    const stateLabel = req.params.StateLabel
+    res.send(createState(stateLabel))
+  } catch (error) {
+    res.send(404)
+    console.log("error")
+  }
+})
+
+router.delete('/state/:id', (req, res) => {
+  try {
+    const id = req.params.id
+    res.send(deleteState(id))
+  } catch (error) {
+    res.send(404)
+    console.log(`Il n'existe pas d'etat avec l'id : ${id}`)
+  }
+})
+
+router.get('/state', (req, res) => {
+  try {
+    res.send(loadState())
+  } catch (error) {
+    res.send(404)
+    console.log(`Il n'existe pas d'etat `)
+  }
+})
+
+router.get('/state/:id', (req, res) => {
+  try {
+    const id = req.params.id
+    res.send(loadStateByid(id))
+  } catch (error) {
+    res.send(404)
+    console.log(`Il n'existe pas d'etat avec l'id : ${id}`)
+  }
+})
+
+router.put('/state/:id', (req, res) => {
+  try {
+    const id = req.params.id
+    const label = req.query.label
+    res.send(updateState(id, label))
+  } catch (error) {
+    res.send(404)
+    //console.log(`Il n'existe pas d'etat avec l'id : ${id}`)
   }
 })
 
