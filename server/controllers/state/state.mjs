@@ -43,4 +43,4 @@ const deleteMessage = (id) => {
 
 
 
-export { loadMessageByid, deleteMessage }
+export { loadState, deleteMessage }

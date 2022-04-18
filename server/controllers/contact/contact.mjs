@@ -26,4 +26,49 @@ const loadContact = (id) => {
     })
 }
 
-export { loadContact }
+const deleteContact = (id) => {
+    client.connect(function (err) {
+        if (err) {
+            return console.error('could not connect to postgres', err)
+        }
+        client.query(`delete from contact where id = ${id}`, function (err, result) {
+            if (err) {
+                return console.error('error running query', err)
+            }
+            console.log(result.rows[0])
+            console.log(`Contact ${id} a bien été supprimé`)
+        })
+    })
+}
+
+const addContact = (name, firstname, mail) => {
+    client.connect(function (err) {
+        if (err) {
+            return console.error('could not connect to postgres', err)
+        }
+        client.query(`insert into contact values (DEFAULT, '${name}','${firstname}','${mail}', NOW())`, function (err, result) {
+            if (err) {
+                return console.error('error running query', err)
+            }
+            console.log(result.rows[0])
+            console.log(`Contact ${name} a bien été ajouté`)
+        })
+    })
+}
+
+const updateContact = (name, newName) => {
+    client.connect(function (err) {
+        if (err) {
+            return console.error('could not connect to postgres', err)
+        }
+        client.query(`update contact set name = '${newName}' where name = ${name})`, function (err, result) {
+            if (err) {
+                return console.error('error running query', err)
+            }
+            console.log(result.rows[0])
+            console.log(`Contact ${name} a bien été ajouté`)
+        })
+    })
+}
+
+export { loadContact, deleteContact, addContact, updateContact }
