@@ -1,9 +1,8 @@
-import { loadContact, deleteContact } from "./controllers/contact/contact.mjs"
+import { loadContact, deleteContact, updateContact, addContact } from "./controllers/contact/contact.mjs"
 import { loadMessageByid, deleteMessage } from "./controllers/message/message.mjs"
+import { addList, deleteList, loadList, updateList } from "./controllers/listContact/listeContact.mjs"
 
 import express from 'express'
-import { addContact } from "./controllers/contact/contact.mjs"
-import { updateContact } from "./controllers/contact/contact.mjs"
 
 const router = express.Router()
 
@@ -23,7 +22,7 @@ router.get('/contact/:id', (req, res) => {
 /**
  * Supprimer un contact par son id
  */
-router.delete('/contact/:id', (req, res) => {
+router.delete('/deleteContact/:id', (req, res) => {
   try {
     const id = req.params.id
     res.send(deleteContact(id))
@@ -36,11 +35,11 @@ router.delete('/contact/:id', (req, res) => {
 /**
  * Ajouter un contact
  */
-router.post('/contact/add', (req, res) => {
+router.post('/addContact', (req, res) => {
   try {
     console.log(req.body)
     const { name, firstname, mail } = req.body
-    res.send(addContact(req.body.name, firstname, mail))
+    res.send(addContact(req.body.name, req.body.firstname, req.body.mail))
   } catch (error) {
     res.send(404)
     console.log(error)
@@ -50,11 +49,67 @@ router.post('/contact/add', (req, res) => {
 /**
  * Modifier le nom d'un contact
  */
-router.put('/contact/:name:newName', (req, res) => {
+router.put('/updateContact/:name/:newName', (req, res) => {
   try {
     const name = req.params.name
     const newName = req.params.newName
+    console.log(req.params.name)
     res.send(updateContact(name, newName))
+  } catch (error) {
+    res.send(404)
+    console.log(error)
+  }
+})
+
+/**
+ * Afficher les contacts d'une liste depuis son id
+ */
+router.get('/contactList/:id', (req, res) => {
+  try {
+    const id = req.params.id
+    res.send(loadList(id))
+  } catch (error) {
+    res.send(404)
+    console.log(`Il n'existe pas de contact avec l'id : ${id}`)
+  }
+})
+
+/**
+ * Supprimer une liste de contact par son id
+ */
+router.delete('/deleteList/:id', (req, res) => {
+  try {
+    const id = req.params.id
+    res.send(deleteList(id))
+  } catch (error) {
+    res.send(404)
+    console.log(`Il n'existe pas de contact avec l'id : ${id}`)
+  }
+})
+
+/**
+ * Ajouter une liste
+ */
+router.post('/addList', (req, res) => {
+  try {
+    console.log(req.body)
+    const { name, description } = req.body
+    res.send(addList(req.body.name, req.body.description))
+  } catch (error) {
+    res.send(404)
+    console.log(error)
+  }
+})
+
+/**
+ * Modifier le nom d'une liste
+ */
+router.put('/updateList/:name/:newName', (req, res) => {
+  try {
+    const name = req.params.name
+    const newName = req.params.newName
+    console.log(req.params.name)
+    res.send(updateList(name, newName))
   } catch (error) {
     res.send(404)
     console.log(error)

@@ -1,0 +1,16 @@
+GET http://localhost:3000/contactList/1 HTTP/1.1
+
+###
+DELETE http://localhost:3000/deleteList/3 HTTP/1.1
+
+###
+POST  http://localhost:3000/addList HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Travail",
+    "description": "Liste de travail"
+}
+
+###
+PUT http://localhost:3000/updateList/Travail/Boulot HTTP/1.1

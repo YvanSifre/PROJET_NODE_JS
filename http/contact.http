@@ -1,10 +1,10 @@
 GET http://localhost:3000/contact/1 HTTP/1.1
 
 ###
-DELETE http://localhost:3000/contact/2 HTTP/1.1
+DELETE http://localhost:3000/deleteContact/2 HTTP/1.1
 
 ###
-POST http://localhost:3000/contact/add HTTP/1.1
+POST http://localhost:3000/addContact HTTP/1.1
 content-type: application/json
 
 {
@@ -12,3 +12,6 @@ content-type: application/json
     "firstname": "Zinedine",
     "mail": "z.megnouche@gmail.com"
 }
+
+###
+PUT http://localhost:3000/updateContact/Zinedine/Yvan HTTP/1.1

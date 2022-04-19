@@ -6,15 +6,16 @@ var url = process.env.URL
 var client = new pg.Client(url);
 
 /**
- * Cette fonction permet de lire les informations d'un contact
+ * Cette fonction permet d'afficher les contacts d'une liste
  * @param id 
  */
-const loadContact = (id) => {
+const loadList = (id) => {
     client.connect(function (err) {
         if (err) {
             return console.error('could not connect to postgres', err)
         }
-        client.query(`select name, firstname, mail, creationdate from contact where id = ${id}`, function (err, result) {
+        client.query(`select list.name, contact.name, contact.firstname from contact, list, rel_contact_list 
+        where rel_contact_list.idcontact = contact.id and rel_contact_list.idlist = ${id}`, function (err, result) {
             if (err) {
                 return console.error('error running query', err)
             }
@@ -26,46 +27,46 @@ const loadContact = (id) => {
     })
 }
 
-const deleteContact = (id) => {
+const deleteList = (id) => {
     client.connect(function (err) {
         if (err) {
             return console.error('could not connect to postgres', err)
         }
-        client.query(`delete from contact where id = ${id}`, function (err, result) {
+        client.query(`delete from list where id = ${id}`, function (err, result) {
             if (err) {
                 return console.error('error running query', err)
             }
-            console.log(`Contact ${id} a bien été supprimé`)
+            console.log(`List ${id} a bien été supprimée`)
         })
     })
 }
 
-const addContact = (name, firstname, mail) => {
+const addList = (name, description) => {
     client.connect(function (err) {
         if (err) {
             return console.error('could not connect to postgres', err)
         }
-        client.query(`insert into contact values (DEFAULT, '${name}','${firstname}','${mail}', NOW())`, function (err, result) {
+        client.query(`insert into list values (DEFAULT, '${name}','${description}', NOW())`, function (err, result) {
             if (err) {
                 return console.error('error running query', err)
             }
-            console.log(`Contact ${name} a bien été ajouté`)
+            console.log(`Liste ${name} a bien été ajoutée`)
         })
     })
 }
 
-const updateContact = (name, newName) => {
+const updateList = (name, newName) => {
     client.connect(function (err) {
         if (err) {
             return console.error('could not connect to postgres', err)
         }
-        client.query(`update contact set firstname = '${newName}' where firstname = '${name}'`, function (err, result) {
+        client.query(`update list set name = '${newName}' where name = '${name}'`, function (err, result) {
             if (err) {
                 return console.error('error running query', err)
             }
-            console.log(`Contact ${name} a bien été modifié`)
+            console.log(`Liste ${name} a bien été modifiée`)
         })
     })
 }
 
-export { loadContact, deleteContact, addContact, updateContact }
+export { loadList, deleteList, addList, updateList }
