@@ -19,5 +19,5 @@ content-type: application/json
     "senthour": "10:30",
     "idstate": 3,
     "idlist": 1,
-    "idmodel": 1
+    "idmodel": 3
 }

@@ -1,27 +1,16 @@
-import pg from 'pg'
-import dotenv from 'dotenv'
-
-dotenv.config()
-var url = process.env.URL
-var client = new pg.Client(url);
+import { client } from '../config/database.mjs'
 
 const loadState = () => {
-  client.connect(function (err) {
+  client.query(`select id, label from state `, function (err, result) {
     if (err) {
-      return console.error('could not connect to postgres', err)
+      return console.error('error running query', err)
     }
-    client.query(`select id, label from state `, function (err, result) {
-      if (err) {
-        return console.error('error running query', err)
-      }
-      if (result.rowCount == 0) {
-        return console.error(`Il n'existe pas d'état`)
-      }
-      console.log(result.rows)
-      const res = result.rows
-      client.end()
-      return res
-    })
+    if (result.rowCount == 0) {
+      return console.error(`Il n'existe pas d'état`)
+    }
+    console.log(result.rows)
+    const res = result.rows
+    return res
   })
 }
 /**
@@ -29,86 +18,61 @@ const loadState = () => {
  * @param id
  */
 const loadStateByid = (id) => {
-  client.connect(function (err) {
+  client.query(`select id, label from state where id = ${id}`, function (err, result) {
     if (err) {
-      return console.error('could not connect to postgres', err)
+      return console.error('error running query', err)
     }
-    client.query(`select id, label from state where id = ${id}`, function (err, result) {
-      if (err) {
-        return console.error('error running query', err)
-      }
-      console.log(result.rows[0])
-      const res = result.rows[0]
-      if (result.rowCount == 0) {
-        return console.error(`L'etat ${id} n'existe pas`)
-      }
-      client.end()
-      return res
-    })
+    console.log(result.rows[0])
+    const res = result.rows[0]
+    if (result.rowCount == 0) {
+      return console.error(`L'etat ${id} n'existe pas`)
+    }
+    return res
   })
 }
 const deleteState = (id) => {
-  client.connect(function (err) {
+  client.query(`delete from state where id = ${id}`, function (err, result) {
     if (err) {
-      return console.error('could not connect to postgres', err)
+      return console.error('error running query', err)
     }
-    client.query(`delete from state where id = ${id}`, function (err, result) {
-      if (err) {
-        return console.error('error running query', err)
-      }
-      if (result.rowCount == 0) {
-        return console.error(`L'etat ${id} n'existe pas`)
-      }
-      //console.log(result.rows[0])
-      console.log(`Etat ${id} a bien été supprimé`)
-    })
+    if (result.rowCount == 0) {
+      return console.error(`L'etat ${id} n'existe pas`)
+    }
+    //console.log(result.rows[0])
+    console.log(`Etat ${id} a bien été supprimé`)
   })
 }
 const updateState = (id, state) => {
-  client.connect(function (err) {
+  client.query(`update state set label = '${state}' where id = ${id}`, function (err, result) {
     if (err) {
-      return console.error('could not connect to postgres', err)
+      return console.error('error running query', err)
     }
-    client.query(`update state set label = '${state}' where id = ${id}`, function (err, result) {
-      if (err) {
-        return console.error('error running query', err)
-      }
-      if (result.rowCount == 0) {
-        return console.error(`L'etat ${id} n'existe pas`)
-      }
-      console.log(result.rows[0])
-      console.log(`Etat ${id} renommé '${state}'`)
-    })
+    if (result.rowCount == 0) {
+      return console.error(`L'etat ${id} n'existe pas`)
+    }
+    console.log(result.rows[0])
+    console.log(`Etat ${id} renommé '${state}'`)
   })
 }
 const createState = (labelState) => {
-  client.connect(function (err) {
+  client.query(`select label from state where label = '${labelState}'`, function (err, result) {
     if (err) {
-      return console.error('could not connect to postgres', err)
+      return console.error('error running query select-----------', err)
     }
-    client.query(`select label from state where label = '${labelState}'`, function (err, result) {
-      if (err) {
-        return console.error('error running query select-----------', err)
-      }
-      console.log('Select label = ', result)
-      if (result.rowCount > 0) {
-        return console.error(`Le label '${labelState}' existe deja`)
-      }
-      else {
-        client.query(`insert into State values(DEFAULT,'${labelState}')`, function (err, result) {
-          if (err) {
-            // return console.error('error running query', err)
-          }
-          console.log(result.rows[0])
-          console.log(`L'état '${labelState}' a bien été crée`)
-        })
-      }
-    })
+    console.log('Select label = ', result)
+    if (result.rowCount > 0) {
+      return console.error(`Le label '${labelState}' existe deja`)
+    }
+    else {
+      client.query(`insert into State values(DEFAULT,'${labelState}')`, function (err, result) {
+        if (err) {
+          // return console.error('error running query', err)
+        }
+        console.log(result.rows[0])
+        console.log(`L'état '${labelState}' a bien été crée`)
+      })
+    }
   })
 }
-
-
-
-
 
 export { loadState, loadStateByid, deleteState, createState, updateState }
