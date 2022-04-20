@@ -1,7 +1,7 @@
 GET http://localhost:3000/contact/1 HTTP/1.1
 
 ###
-DELETE http://localhost:3000/deleteContact/2 HTTP/1.1
+DELETE http://localhost:3000/deleteContact/1 HTTP/1.1
 
 ###
 POST http://localhost:3000/addContact HTTP/1.1
@@ -14,4 +14,4 @@ content-type: application/json
 }
 
 ###
-PUT http://localhost:3000/updateContact/Zinedine/Yvan HTTP/1.1
+PUT http://localhost:3000/updateContact/Paul/Yvan HTTP/1.1

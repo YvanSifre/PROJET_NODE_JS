@@ -35,6 +35,9 @@ const deleteContact = (id) => {
             if (err) {
                 return console.error('error running query', err)
             }
+            if (result.rowCount == 0) {
+                return console.error(`Le contact ${id} n'existe pas`)
+            }
             console.log(`Contact ${id} a bien été supprimé`)
         })
     })
@@ -62,6 +65,9 @@ const updateContact = (name, newName) => {
         client.query(`update contact set firstname = '${newName}' where firstname = '${name}'`, function (err, result) {
             if (err) {
                 return console.error('error running query', err)
+            }
+            if (result.rowCount == 0) {
+                return console.error(`Le contact ${name} n'existe pas`)
             }
             console.log(`Contact ${name} a bien été modifié`)
         })

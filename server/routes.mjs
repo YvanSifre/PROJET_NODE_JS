@@ -39,7 +39,7 @@ router.post('/addContact', (req, res) => {
   try {
     console.log(req.body)
     const { name, firstname, mail } = req.body
-    res.send(addContact(req.body.name, req.body.firstname, req.body.mail))
+    res.send(addContact(name, firstname, mail))
   } catch (error) {
     res.send(404)
     console.log(error)
@@ -53,7 +53,6 @@ router.put('/updateContact/:name/:newName', (req, res) => {
   try {
     const name = req.params.name
     const newName = req.params.newName
-    console.log(req.params.name)
     res.send(updateContact(name, newName))
   } catch (error) {
     res.send(404)
@@ -94,7 +93,7 @@ router.post('/addList', (req, res) => {
   try {
     console.log(req.body)
     const { name, description } = req.body
-    res.send(addList(req.body.name, req.body.description))
+    res.send(addList(name, description))
   } catch (error) {
     res.send(404)
     console.log(error)
