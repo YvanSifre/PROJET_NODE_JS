@@ -3,12 +3,9 @@ import { loadMessageByid, deleteMessage } from "./controllers/message/message.mj
 import { addList, deleteList, loadList, updateList } from "./controllers/listContact/listeContact.mjs"
 
 import express from 'express'
-<<<<<<< HEAD
-=======
 import { addContact } from "./controllers/contact/contact.mjs"
 import { updateContact } from "./controllers/contact/contact.mjs"
 import { loadTemplateById, loadTemplate, deleteTemplate, addTemplate, updateTemplate } from "./controllers/model-template/model-template.mjs"
->>>>>>> de752a7 (Ajout Crud Model-Template)
 
 const router = express.Router()
 
