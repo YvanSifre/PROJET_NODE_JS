@@ -1,0 +1,13 @@
+###Total de contact
+GET  http://localhost:3000/nbContact HTTP/1.1
+
+###Total de liste
+GET  http://localhost:3000/totalListe HTTP/1.1
+###Total de message envoyés
+GET  http://localhost:3000/nbMessageEnvoye HTTP/1.1
+
+###Dernier message envoyé
+GET  http://localhost:3000/derniermessage HTTP/1.1
+
+###Nombre de message par type
+GET  http://localhost:3000/nbMsgType HTTP/1.1

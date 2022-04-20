@@ -3,7 +3,7 @@ import { loadMessageByid, deleteMessage } from "./controllers/message/message.mj
 import { addList, loadAllList, deleteList, loadList, updateList } from "./controllers/listContact/listeContact.mjs"
 
 import { loadState, loadStateByid, createState, deleteState, updateState } from "./controllers/state/state.mjs"
-
+import { totalContact, totalList, mostRecentMessage, nbSentMsg, nbSentMsgBytype } from "./controllers/stats/stats.mjs"
 import express from 'express'
 import { loadTemplateById, loadTemplate, deleteTemplate, addTemplate, updateTemplate } from "./controllers/model-template/model-template.mjs"
 
@@ -193,9 +193,10 @@ router.put('/message/:id/:content', (req, res) => {
 
 router.post('/addMessage', (req, res) => {
   try {
+    console.log("REQQQ BODY ----------------------------")
     console.log(req.body)
+    console.log("REQQQ BODY ----------------------------")
     const { object, content, senddate, sentdate, sendhour, senthour, idstate, idlist, idmodel } = req.body
-    //res.send(addContact(req.body.name, req.body.firstname, req.body.mail))
     res.send(createMessage(req.body.object, req.body.content, req.body.senddate, req.body.sentdate, req.body.sendhour, req.body.senthour, req.body.idstate, req.body.idlist, req.body.idmodel))
   } catch (error) {
     res.send(404)
@@ -307,6 +308,47 @@ router.put('/state/:id', (req, res) => {
   }
 })
 
+// ------------------  Stats ----------------------------//
+
+router.get('/nbContact', (req, res) => {
+  try {
+    res.send(totalContact())
+  } catch (error) {
+    res.send(404)
+    console.log(`Pas de contact`)
+  }
+})
+router.get('/nbMessageEnvoye', (req, res) => {
+  try {
+    res.send(nbSentMsg())
+  } catch (error) {
+    res.send(404)
+  }
+})
+
+router.get('/derniermessage', (req, res) => {
+  try {
+    res.send(mostRecentMessage())
+  } catch (error) {
+    res.send(404)
+  }
+})
+
+router.get('/totalListe', (req, res) => {
+  try {
+    res.send(totalList())
+  } catch (error) {
+    res.send(404)
+  }
+})
+
+router.get('/nbMsgType', (req, res) => {
+  try {
+    res.send(nbSentMsgBytype())
+  } catch (error) {
+    res.send(404)
+  }
+})
 
 
 

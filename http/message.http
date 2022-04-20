@@ -5,3 +5,19 @@ GET http://localhost:3000/message/1 HTTP/1.1
 
 ### Supprime un message
 DELETE http://localhost:3000/message/1 HTTP/1.1
+
+###
+POST http://localhost:3000/addMessage HTTP/1.1
+content-type: application/json
+
+{
+    "object": "Facture ",
+    "content": "Voici votre facture de test",
+    "senddate": "2022-04-20",
+    "sentdate": "2022-04-25",
+    "sendhour": "10:00",
+    "senthour": "10:30",
+    "idstate": 3,
+    "idlist": 1,
+    "idmodel": 1
+}
