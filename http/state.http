@@ -1,8 +1,8 @@
 ###Ajout/Création d'un état de message
-POST http://localhost:3000/state/test5 HTTP/1.1
+POST http://localhost:3000/state/attente HTTP/1.1
 
 ### Suppression d'un etat
-DELETE http://localhost:3000/state/10 HTTP/1.1
+DELETE http://localhost:3000/state/9 HTTP/1.1
 
 ###Liste des états
 GET http://localhost:3000/state HTTP/1.1

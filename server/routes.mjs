@@ -3,6 +3,7 @@ import { loadMessageByid, deleteMessage } from "./controllers/message/message.mj
 import { addList, loadAllList, deleteList, loadList, updateList } from "./controllers/listContact/listeContact.mjs"
 
 import { loadState, loadStateByid, createState, deleteState, updateState } from "./controllers/state/state.mjs"
+
 import express from 'express'
 import { loadTemplateById, loadTemplate, deleteTemplate, addTemplate, updateTemplate } from "./controllers/model-template/model-template.mjs"
 
@@ -111,6 +112,7 @@ router.delete('/deleteList/:id', (req, res) => {
     console.log(`Il n'existe pas de contact avec l'id : ${id}`)
   }
 })
+// ------------- Message ---------------- //
 
 /**
  * Ajouter une liste
@@ -154,9 +156,19 @@ router.get('/message/:id', (req, res) => {
   }
 })
 
+router.get('/message', (req, res) => {
+  try {
+    res.send(loadMessageByid())
+  } catch (error) {
+    res.send(404)
+    console.log("error")
+  }
+})
+
 /**
  * Supprimer un message par son id
  */
+
 router.delete('/message/:id', (req, res) => {
   try {
     const id = req.params.id
