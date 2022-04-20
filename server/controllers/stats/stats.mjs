@@ -55,7 +55,7 @@ const nbSentMsg = () => {
 }
 //select count(*), name from contact group by name
 const nbSentMsgBytype = () => {
-  client.query(`select count(*), idList from message group by idList`, function (err, result) {
+  client.query(`select count(*), idList from message group by idModel`, function (err, result) {
     if (err) {
       return console.error('error running query', err)
     }
