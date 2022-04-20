@@ -1,0 +1,19 @@
+GET http://localhost:3000/model HTTP/1.1
+
+###
+GET http://localhost:3000/model/2 HTTP/1.1
+
+###
+DELETE http://localhost:3000/model/1 HTTP/1.1
+
+###
+POST http://localhost:3000/model HTTP/1.1
+content-type: application/json
+
+{
+    "name": "test",
+    "filename": "test"
+}
+
+###
+PUT http://localhost:3000/model/2/temp2 HTTP/1.1

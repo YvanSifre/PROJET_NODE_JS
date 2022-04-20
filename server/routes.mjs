@@ -3,6 +3,12 @@ import { loadMessageByid, deleteMessage } from "./controllers/message/message.mj
 import { addList, deleteList, loadList, updateList } from "./controllers/listContact/listeContact.mjs"
 
 import express from 'express'
+<<<<<<< HEAD
+=======
+import { addContact } from "./controllers/contact/contact.mjs"
+import { updateContact } from "./controllers/contact/contact.mjs"
+import { loadTemplateById, loadTemplate, deleteTemplate, addTemplate, updateTemplate } from "./controllers/model-template/model-template.mjs"
+>>>>>>> de752a7 (Ajout Crud Model-Template)
 
 const router = express.Router()
 
@@ -140,5 +146,60 @@ router.delete('/message/:id', (req, res) => {
     console.log(`Il n'existe pas de message avec l'id : ${id}`)
   }
 })
+
+//Template
+
+router.get('/model/:id', (req, res) => {
+  try {
+    const id = req.params.id
+    res.send(loadTemplateById(id))
+  } catch (error) {
+    res.send(404)
+    console.log("error")
+  }
+})
+
+router.get('/model', (req, res) => {
+  try {
+    res.send(loadTemplate())
+  } catch (error) {
+    res.send(404)
+    console.log("error")
+  }
+})
+
+
+router.delete('/model/:id', (req, res) => {
+  try {
+    const id = req.params.id
+    res.send(deleteTemplate(id))
+  } catch (error) {
+    res.send(404)
+    console.log(`Il n'existe pas de template avec l'id : ${id}`)
+  }
+})
+
+router.put('/model/:id/:name', (req, res) => {
+  try {
+    const id = req.params.id
+    const name = req.params.name
+    res.send(updateTemplate(id, name))
+  } catch (error) {
+    res.send(404)
+    console.log(`Il n'existe pas de template avec l'id : ${id}`)
+  }
+})
+
+router.post('/model', (req, res) => {
+  try {
+    res.send(addTemplate(req.body.name, req.body.filename))
+  } catch (error) {
+    res.send(404)
+    console.log(error)
+  }
+})
+
+
+
 
 export default router
