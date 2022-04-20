@@ -1,10 +1,8 @@
-import { loadContact, deleteContact, updateContact, addContact } from "./controllers/contact/contact.mjs"
+import { loadContact, loadAllContact, deleteContact, updateContact, addContact } from "./controllers/contact/contact.mjs"
 import { loadMessageByid, deleteMessage } from "./controllers/message/message.mjs"
-import { addList, deleteList, loadList, updateList } from "./controllers/listContact/listeContact.mjs"
+import { addList, loadAllList, deleteList, loadList, updateList } from "./controllers/listContact/listeContact.mjs"
 
 import express from 'express'
-import { addContact } from "./controllers/contact/contact.mjs"
-import { updateContact } from "./controllers/contact/contact.mjs"
 import { loadTemplateById, loadTemplate, deleteTemplate, addTemplate, updateTemplate } from "./controllers/model-template/model-template.mjs"
 
 const router = express.Router()
@@ -19,6 +17,18 @@ router.get('/contact/:id', (req, res) => {
   } catch (error) {
     res.send(404)
     console.log(`Il n'existe pas de contact avec l'id : ${id}`)
+  }
+})
+
+/**
+ * Afficher toutes les contacts
+ */
+router.get('/getContact', (req, res) => {
+  try {
+    res.send(loadAllContact())
+  } catch (error) {
+    res.send(404)
+    console.log(error)
   }
 })
 
@@ -57,6 +67,18 @@ router.put('/updateContact/:name/:newName', (req, res) => {
     const name = req.params.name
     const newName = req.params.newName
     res.send(updateContact(name, newName))
+  } catch (error) {
+    res.send(404)
+    console.log(error)
+  }
+})
+
+/**
+ * Afficher toutes les listes de contact
+ */
+router.get('/getList', (req, res) => {
+  try {
+    res.send(loadAllList())
   } catch (error) {
     res.send(404)
     console.log(error)

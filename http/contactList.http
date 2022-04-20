@@ -1,6 +1,9 @@
 GET http://localhost:3000/contactList/1 HTTP/1.1
 
 ###
+GET http://localhost:3000/getList HTTP/1.1
+
+###
 DELETE http://localhost:3000/deleteList/3 HTTP/1.1
 
 ###
