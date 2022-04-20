@@ -25,7 +25,7 @@ const loadState = () => {
   })
 }
 /**
- * Cette fonction permet de lire les informations d'un contact
+ * Cette fonction permet d'afficher le label d'un état de message en fonction de son
  * @param id
  */
 const loadStateByid = (id) => {

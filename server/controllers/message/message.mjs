@@ -79,6 +79,41 @@ const createMessage = (object, content, senddate, sentdate, sendhour, senthour, 
   })
 }
 
+const updateMessage = (id, content) => {
+  client.connect(function (err) {
+    if (err) {
+      return console.error('could not connect to postgres', err)
+    }
+    client.query(`update message set content = '${content}' where id = ${id}`, function (err, result) {
+      if (err) {
+        return console.error('error running query', err)
+      }
+      if (result.rowCount == 0) {
+        return console.error(`Le mssage ${id} n'existe pas`)
+      }
+      console.log(result.rows[0])
+      console.log(`Contenu du message ${id} modifié avec succes`)
+    })
+  })
+}
 
+const isReadyToSend = () => {
+  client.connect(function (err) {
+    if (err) {
+      return console.error('could not connect to postgres', err)
+    }
+    client.query(`select message.id from message inner join state on idState = state.id where state.label = 'pret'`, function (err, result) {
+      if (err) {
+        return console.error('error running query', err)
+      }
+      if (result.rowCount == 0) {
+        return console.error("Pas de message prêt à être envoyé.")
+      }
+      console.log(`Id de messages prêt a être envoyé: `)
+      console.log(result.rows)
+      return result.rows
+    })
+  })
+}
 
-export { loadMessageByid, deleteMessage, loadMessage, createMessage }
+export { loadMessageByid, deleteMessage, loadMessage, createMessage, updateMessage, isReadyToSend }

@@ -112,7 +112,6 @@ router.delete('/deleteList/:id', (req, res) => {
     console.log(`Il n'existe pas de contact avec l'id : ${id}`)
   }
 })
-// ------------- Message ---------------- //
 
 /**
  * Ajouter une liste
@@ -143,6 +142,8 @@ router.put('/updateList/:name/:newName', (req, res) => {
   }
 })
 
+// ------------- Message ---------------- //
+
 /**
  * Lire les informations d'un message depuis son id
  */
@@ -158,7 +159,7 @@ router.get('/message/:id', (req, res) => {
 
 router.get('/message', (req, res) => {
   try {
-    res.send(loadMessageByid())
+    res.send(loadMessage())
   } catch (error) {
     res.send(404)
     console.log("error")
@@ -176,6 +177,29 @@ router.delete('/message/:id', (req, res) => {
   } catch (error) {
     res.send(404)
     console.log(`Il n'existe pas de message avec l'id : ${id}`)
+  }
+})
+
+router.put('/message/:id/:content', (req, res) => {
+  try {
+    const id = req.params.id
+    const content = req.params.content
+    res.send(updateMessage(id, content))
+  } catch (error) {
+    res.send(404)
+    console.log(`Il n'existe pas de message avec l'id : ${id}`)
+  }
+})
+
+router.post('/addMessage', (req, res) => {
+  try {
+    console.log(req.body)
+    const { object, content, senddate, sentdate, sendhour, senthour, idstate, idlist, idmodel } = req.body
+    //res.send(addContact(req.body.name, req.body.firstname, req.body.mail))
+    res.send(createMessage(req.body.object, req.body.content, req.body.senddate, req.body.sentdate, req.body.sendhour, req.body.senthour, req.body.idstate, req.body.idlist, req.body.idmodel))
+  } catch (error) {
+    res.send(404)
+    console.log(error)
   }
 })
 
@@ -227,7 +251,7 @@ router.post('/model', (req, res) => {
     res.send(addTemplate(req.body.name, req.body.filename))
   } catch (error) {
     res.send(404)
-    console.log(error)
+    console.log(`Il n'existe pas de message avec l'id : ${id}`)
   }
 })
 
