@@ -8,12 +8,12 @@ GET http://localhost:3000/getContact HTTP/1.1
 DELETE http://localhost:3000/deleteContact/1 HTTP/1.1
 
 ### Ajoute le contact
-POST http://localhost:3000/addContact HTTP/1.1
+POST http://localhost:3000/addContact/test/1 HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Megnouche",
-    "firstname": "Zinedine",
+    "name": "test",
+    "firstname": "test",
     "mail": "z.megnouche@gmail.com"
 }
 

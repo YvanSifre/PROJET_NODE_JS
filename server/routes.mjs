@@ -50,11 +50,13 @@ router.delete('/deleteContact/:id', (req, res) => {
 /**
  * Ajouter un contact
  */
-router.post('/addContact', (req, res) => {
+router.post('/addContact/:label/:idList', (req, res) => {
   try {
     console.log(req.body)
     const { name, firstname, mail } = req.body
-    res.send(addContact(name, firstname, mail))
+    const label = req.params.label
+    const idList = req.params.idList
+    res.send(addContact(name, firstname, mail, label, idList))
   } catch (error) {
     res.send(404)
     console.log(error)

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <h2 id="objet"> Object </h2>
+
+    <p id="content"> JavaScript can change the content of an HTML element </p>
+
+    <button type="button" onclick="loadMessageByid(1)">Click Me!</button>
+
+    <p id="list">Contact liste</p>
+
+    <script>
+        var client = require('controllers/config/database.mjs');
+        function loadMessageByid(id) {
+            client.query(`select id, object, content, senddate, sentdate, sendhour, senthour, idstate, idlist, idmodel from message where id = ${id}`, (err, result) => {
+                if (err) {
+                    return console.error('error running query', err)
+                }
+                if (result.rowCount == 0) {
+                    return console.error(`Pas de message`)
+                }
+                const res = result.rows[0]
+                console.log(res)
+                document.getElementById("objet").innerHTML = id
+            })
+        }
+        /*function myFunction() {
+            document.getElementById("objet").innerHTML = "Hello JavaScript!";
+        }*/
+    </script>
+
+</body>
+
+</html>
