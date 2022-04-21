@@ -13,14 +13,14 @@ DELETE http://localhost:3000/deleteContact/1 HTTP/1.1
 Authorization: Bearer {{token}}
 
 ### Ajoute le contact
-POST http://localhost:3000/addContact/test/1 HTTP/1.1
+POST http://localhost:3000/addContact/liste/1 HTTP/1.1
 Authorization: Bearer {{token}}
 content-type: application/json
 
 {
-    "name": "test",
-    "firstname": "test",
-    "mail": "z.megnouche@gmail.com"
+    "name": "George",
+    "firstname": "Paul",
+    "mail": "p.george@gmail.com"
 }
 
 ### Modifie le nom de contact

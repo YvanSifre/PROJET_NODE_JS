@@ -1,4 +1,3 @@
-//import { json } from 'body-parser'
 import { client } from '../config/database.mjs'
 
 /**
@@ -71,7 +70,6 @@ const addContact = (name, firstname, mail, label, idList) => {
             return console.error('error running query', err)
         }
         res = result.rows[0]
-        console.log(res)
         client.query(`insert into rel_contact_list values ('${label}', ${idList}, ${res.id})`, function (err, result) {
             if (err) {
                 return console.error('error running query', err)

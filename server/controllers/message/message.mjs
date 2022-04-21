@@ -92,15 +92,23 @@ const updateMessage = (id, content) => {
  * Affiche les id de message dont l'etat est 'pret'
  */
 const isReadyToSend = () => {
-  client.query(`update message set idState = 1 where idState = 3`, function (err, result) {
-    if (err) {
-      return false
-    }
-    console.log("success")
-    return true
-  })
-
-
+  var random_boolean = Math.random() < 0.5
+  if (random_boolean) {
+    client.query(`update message set idState = 1 where idState = 3 and senddate <= NOW()`, function (err, result) {
+      if (err) {
+        return false
+      }
+    })
+    return 1
+  }
+  else {
+    client.query(`update message set sendhour=sendhour+interval '1 hour' where idState = 3`, function (err, result) {
+      if (err) {
+        return err
+      }
+    })
+    return 0
+  }
 }
 
 export { loadMessageByid, deleteMessage, loadMessage, createMessage, updateMessage, isReadyToSend }

@@ -35,8 +35,7 @@ const getReadyMessages = async () => {
             Authorization: `Bearer ${TOKEN}`
         }
     })
-    console.log(res)
-    return res.data
+    return res
 
 }
 
@@ -47,14 +46,15 @@ const getReadyMessages = async () => {
         console.log("Erreur d'authentification")
         return
     }
+    //toutes les minutes
     cron.schedule('* * * * * *', function () {
         try {
             getReadyMessages()
                 .then(() => {
-                    console.log("message envoyé")
+                    console.log("Un message a été envoyé")
                 })
                 .catch((err) => {
-                    console.log(err)
+                    console.log("Le message n'a pas été envoyé")
                 })
         } catch (e) {
             console.log('ERREUR : ', e.response.data, e.response.status)

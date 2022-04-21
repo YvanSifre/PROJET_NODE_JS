@@ -22,11 +22,11 @@ Authorization: Bearer {{token}}
 content-type: application/json
 
 {
-    "object": "Information ",
+    "object": "Information true",
     "content": "Mail d information",
     "senddate": "2022-04-20",
     "sentdate": "2022-04-25",
-    "sendhour": "10:00",
+    "sendhour": "23:30",
     "senthour": "10:30",
     "idstate": 3,
     "idlist": 1,

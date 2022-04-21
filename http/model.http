@@ -14,8 +14,8 @@ POST http://localhost:3000/model HTTP/1.1
 content-type: application/json
 
 {
-    "name": "test",
-    "filename": "test"
+    "name": "template",
+    "filename": "template.html"
 }
 
 ### modifie le nom du model {id}

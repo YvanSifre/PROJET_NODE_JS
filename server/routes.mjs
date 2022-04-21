@@ -334,12 +334,17 @@ router.get('/derniermessage', (req, res) => {
 
 router.get('/messagepret', (req, res) => {
   try {
-    res.send(isReadyToSend())
+    if (isReadyToSend() == 1) {
+
+      res.send(200)
+    }
+    else {
+      res.send(400)
+    }
   } catch (error) {
     res.send(404)
   }
 })
-
 
 
 router.get('/totalListe', (req, res) => {
