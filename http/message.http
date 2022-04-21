@@ -12,15 +12,15 @@ POST http://localhost:3000/addMessage HTTP/1.1
 content-type: application/json
 
 {
-    "object": "Facture ",
-    "content": "Voici votre facture de test",
+    "object": "Information ",
+    "content": "Mail d information",
     "senddate": "2022-04-20",
     "sentdate": "2022-04-25",
     "sendhour": "10:00",
     "senthour": "10:30",
     "idstate": 3,
     "idlist": 1,
-    "idmodel": 3
+    "idmodel": 10
 }
 ### Modifie un message
-
+PUT  http://localhost:3000/message/1/TestDeContenudansLemail HTTP/1.1

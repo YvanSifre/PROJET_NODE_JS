@@ -1,5 +1,5 @@
 import { client } from '../config/database.mjs'
-
+import { loadMessageByid } from '../message/message.mjs'
 /**
  * Cette fonction affiche tous les contacts
  */
@@ -46,6 +46,7 @@ const mostRecentMessage = () => {
     }
     const res = result.rows[0].id
     console.log("Dernier message envoyé (id): ", res)
+    loadMessageByid(res)
     return res
   })
 }
@@ -70,14 +71,20 @@ const nbSentMsg = () => {
  * Cette fonction affiche le nombre de message envoyé par type
  */
 const nbSentMsgBytype = () => {
-  client.query(`select count(*), idList from message group by idModel`, function (err, result) {
+  client.query(`select idModel,count(*) as nbmsg from message group by idModel`, function (err, result) {
     if (err) {
       return console.error('error running query', err)
     }
     if (result.rowCount == 0) {
       return console.error(`Pas de message`)
     }
-    const res = result
+    const res = result.rows
+    console.log("idModel  | Nombre de message envoyés \n")
+    res.forEach(query => {
+      console.log(" %d \t |  \t %d", query.idmodel, query.nbmsg)
+      console.log("------------------------------")
+    });
+    //console.log(res)
     return res
   })
 }

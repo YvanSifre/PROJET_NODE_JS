@@ -193,10 +193,6 @@ router.put('/message/:id/:content', (req, res) => {
 
 router.post('/addMessage', (req, res) => {
   try {
-    console.log("REQQQ BODY ----------------------------")
-    console.log(req.body)
-    console.log("REQQQ BODY ----------------------------")
-    const { object, content, senddate, sentdate, sendhour, senthour, idstate, idlist, idmodel } = req.body
     res.send(createMessage(req.body.object, req.body.content, req.body.senddate, req.body.sentdate, req.body.sendhour, req.body.senthour, req.body.idstate, req.body.idlist, req.body.idmodel))
   } catch (error) {
     res.send(404)
@@ -304,7 +300,6 @@ router.put('/state/:id', (req, res) => {
     res.send(updateState(id, label))
   } catch (error) {
     res.send(404)
-    //console.log(`Il n'existe pas d'etat avec l'id : ${id}`)
   }
 })
 

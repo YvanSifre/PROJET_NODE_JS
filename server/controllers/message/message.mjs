@@ -13,6 +13,7 @@ const loadMessageByid = (id) => {
       return console.error(`Pas de message`)
     }
     const res = result.rows[0]
+    console.log(res)
     return res
   })
 }
@@ -28,6 +29,7 @@ const loadMessage = () => {
       return console.error(`Pas de message`)
     }
     const res = result.rows
+    console.log(res)
     return res
   })
 }

@@ -6,7 +6,7 @@ export default {
     title: "Projet API REST",
     description: "ESGI Paris : Projet API REST, Réalise par : Yvan Sifre, Thomas Southasa, Zinedine Megnouche",
     contact: {
-      name: "ESGI Contact",
+      name: "SIFRE SOUTHASA MEGNOUCHE",
       email: "info@esgi.fr",
       url: "https://esgi.fr",
     },

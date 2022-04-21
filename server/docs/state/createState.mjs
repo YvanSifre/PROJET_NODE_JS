@@ -1,18 +1,9 @@
 export default {
-  put: {
+  post: {
     tags: ["State"],
-    description: "Modifie le label de l'état à partir de son id",
-    operationId: "updateState",
+    description: "Creer un etat de message",
+    operationId: "createState",
     parameters: [
-      {
-        "name": "id",
-        "description": "id de l'état de message à modifier",
-        "in": "query",
-        "type": "int",
-        "required": true,
-        "example": 1
-
-      },
       {
         "name": "label",
         "description": "nouveau label de l'état de message ",
@@ -20,24 +11,23 @@ export default {
         "type": "string",
         "required": true,
         "example": "Enregistré"
-
       }
 
     ],
     responses: {
       200: {
-        description: "État ${id} renommé ${label}",
+        description: "l'état '${label}'a bien été crée",
         content: {
           "text/plain": {
             schema: {
               type: "string",
-              example: "État 1 renommé enregistré"
+              example: "l'état 'enregistré' a bien été crée"
             }
           }
         }
       },
       400: {
-        description: "L'etat ${id} n'existe pas ",
+        description: "Le label '${labelState}' existe deja ",
       },
     },
   },

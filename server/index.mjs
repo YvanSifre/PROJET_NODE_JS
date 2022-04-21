@@ -15,6 +15,8 @@ app.use(morgan('tiny'))
 app.use(router)
 
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(docs, { explorer: true }))
+
+
 // MAIN SERVER
 app.listen(port, () => {
   console.log('\x1b[36m%s\x1b[0m', `\nListening at http://localhost:${port}`)

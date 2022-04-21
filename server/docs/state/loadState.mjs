@@ -1,24 +1,24 @@
 export default {
   get: {
     tags: ["State"],
-    description: "Affiche tous les états d'un message",
+    description: "Affiche tous les états de message",
     operationId: "loadState",
-    parameters: [],
-    requestBody: {
-      content: {
-        "application/json": {
-          schema: {
-            $ref: "#/components/schemas/state",
-          },
-        },
-      },
-    },
+    parameters: [
+    ],
     responses: {
       200: {
-        description: "Brouillon",
+        description: "{ id: ${id}, label: '${label}}",
+        content: {
+          "text/plain": {
+            schema: {
+              type: "string",
+              example: "{ id: 1, label: 'envoyé' },\n{ id: 2, label: 'brouillon' },"
+            }
+          }
+        }
       },
       400: {
-        description: "Cet id n'existe pas ",
+        description: "Pas d'état de message ",
       },
     },
   },
