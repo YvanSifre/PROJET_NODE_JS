@@ -1,5 +1,8 @@
 import { client } from '../config/database.mjs'
 
+/**
+ * Cette fonction affiche tous les etats
+ */
 const loadState = () => {
   client.query(`select id, label from state `, function (err, result) {
     if (err) {
@@ -14,7 +17,7 @@ const loadState = () => {
   })
 }
 /**
- * Cette fonction permet d'afficher le label d'un état de message en fonction de son
+ * Cette fonction permet d'afficher le label d'un état de message
  * @param id
  */
 const loadStateByid = (id) => {
@@ -30,6 +33,11 @@ const loadStateByid = (id) => {
     return res
   })
 }
+
+/**
+ * Cette fonction permet de supprimer un etat de masagge
+ * @param id id de l'etat a modifier
+ */
 const deleteState = (id) => {
   client.query(`delete from state where id = ${id}`, function (err, result) {
     if (err) {
@@ -42,6 +50,12 @@ const deleteState = (id) => {
     console.log(`Etat ${id} a bien été supprimé`)
   })
 }
+
+/**
+ * Cette fonction permet de modifier le label d'un etat de message
+ * @param id id de l'etat à modifier
+ * @param state nom du nouveau label pour l'etat de message
+ */
 const updateState = (id, state) => {
   client.query(`update state set label = '${state}' where id = ${id}`, function (err, result) {
     if (err) {
@@ -54,6 +68,11 @@ const updateState = (id, state) => {
     console.log(`Etat ${id} renommé '${state}'`)
   })
 }
+
+/**
+ * Cette fonction permet de crée un etat de message
+ * @param labelState label de l'etat de message
+ */
 const createState = (labelState) => {
   client.query(`select label from state where label = '${labelState}'`, function (err, result) {
     if (err) {

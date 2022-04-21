@@ -1,12 +1,13 @@
 ### Affiche tous les messages
 GET http://localhost:3000/message HTTP/1.1
-### Affiche le messsage by id
+
+### Affiche le messsage {id}
 GET http://localhost:3000/message/1 HTTP/1.1
 
-### Supprime un message
+### Supprime le message {id}
 DELETE http://localhost:3000/message/1 HTTP/1.1
 
-###
+### Ajout d'un message
 POST http://localhost:3000/addMessage HTTP/1.1
 content-type: application/json
 
@@ -21,3 +22,5 @@ content-type: application/json
     "idlist": 1,
     "idmodel": 3
 }
+### Modifie un message
+

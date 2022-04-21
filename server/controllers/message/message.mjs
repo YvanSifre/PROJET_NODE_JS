@@ -31,6 +31,11 @@ const loadMessage = () => {
     return res
   })
 }
+
+/**
+ * Cette fonction supprime un message
+ * @param id
+ */
 const deleteMessage = (id) => {
   client.query(`delete from message where id = ${id}`, function (err, result) {
     if (err) {
@@ -39,6 +44,19 @@ const deleteMessage = (id) => {
     console.log(`Message ${id} a bien été supprimé`)
   })
 }
+
+/**
+ * Cette fonction crée un nouveau message
+ * @param object Objet du message
+ * @param content contenu du message
+ * @param senddate date d'envoie
+ * @param sentdate date envoyé
+ * @param sendhour heure d'envoie
+ * @param senthour heure envoyé
+ * @param idstate id de l'etat du message 1:envoyé, 2: brouillon, 3: pret
+ * @param idlist id liste
+ * @param idmodel id du model
+ */
 const createMessage = (object, content, senddate, sentdate, sendhour, senthour, idstate, idlist, idmodel) => {
   client.query(`insert into message values (DEFAULT, '${object}', '${content}', '${senddate}', '${sentdate}','${sendhour}', '${senthour}', ${idstate}, ${idlist}, ${idmodel})`, function (err, result) {
     if (err) {
@@ -51,6 +69,11 @@ const createMessage = (object, content, senddate, sentdate, sendhour, senthour, 
   })
 }
 
+/**
+ * Cette fonction modifie le contenu d'un message
+ * @param id id du message a modifier
+ * @param content contenu du message
+ */
 const updateMessage = (id, content) => {
   client.query(`update message set content = '${content}' where id = ${id}`, function (err, result) {
     if (err) {
@@ -63,6 +86,9 @@ const updateMessage = (id, content) => {
   })
 }
 
+/**
+ * Affiche les id de message dont l'etat est 'pret'
+ */
 const isReadyToSend = () => {
   client.query(`select message.id from message inner join state on idState = state.id where state.label = 'pret'`, function (err, result) {
     if (err) {

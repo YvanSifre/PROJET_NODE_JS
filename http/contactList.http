@@ -1,12 +1,13 @@
+### Affiche la liste {1}
 GET http://localhost:3000/contactList/1 HTTP/1.1
 
-###
+### Affiche toutes les listes
 GET http://localhost:3000/getList HTTP/1.1
 
-###
+### Supprime la liste {id}
 DELETE http://localhost:3000/deleteList/3 HTTP/1.1
 
-###
+### Ajout d'une liste
 POST  http://localhost:3000/addList HTTP/1.1
 content-type: application/json
 
@@ -15,5 +16,5 @@ content-type: application/json
     "description": "Liste de travail"
 }
 
-###
+### Modification du nom de la liste
 PUT http://localhost:3000/updateList/Travail/Boulot HTTP/1.1

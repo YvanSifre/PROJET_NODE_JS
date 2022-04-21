@@ -1,12 +1,13 @@
+### affiche la liste des models
 GET http://localhost:3000/model HTTP/1.1
 
-###
+### affiche le model {id}
 GET http://localhost:3000/model/2 HTTP/1.1
 
-###
+### supprime le model {id}
 DELETE http://localhost:3000/model/1 HTTP/1.1
 
-###
+### ajout d'un model
 POST http://localhost:3000/model HTTP/1.1
 content-type: application/json
 
@@ -15,5 +16,5 @@ content-type: application/json
     "filename": "test"
 }
 
-###
+### modifie le nom du model {id}
 PUT http://localhost:3000/model/2/temp2 HTTP/1.1

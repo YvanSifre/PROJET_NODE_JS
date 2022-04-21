@@ -1,5 +1,8 @@
 import { client } from '../config/database.mjs'
 
+/**
+ * Cette fonction affiche tous les contacts
+ */
 const totalContact = () => {
   client.query(`select count(id) as nb from contact`, function (err, result) {
     if (err) {
@@ -13,6 +16,9 @@ const totalContact = () => {
     return res
   })
 }
+/**
+ * Cette fonction affiche toutes les listes
+ */
 const totalList = () => {
   client.query(`select count(id) as nb from list`, function (err, result) {
     if (err) {
@@ -26,6 +32,10 @@ const totalList = () => {
     return res
   })
 }
+
+/**
+ * Cette fonction affiche le message le plus recent
+ */
 const mostRecentMessage = () => {
   client.query(`select id from message order by sentdate desc, senthour desc`, function (err, result) {
     if (err) {
@@ -40,6 +50,9 @@ const mostRecentMessage = () => {
   })
 }
 
+/**
+ * Cette fonction affiche le nombre de message envoyé
+ */
 const nbSentMsg = () => {
   client.query(`select count(*) nb from message inner join state on idState = state.id where label = 'envoyé'`, function (err, result) {
     if (err) {
@@ -53,7 +66,9 @@ const nbSentMsg = () => {
     return res
   })
 }
-//select count(*), name from contact group by name
+/**
+ * Cette fonction affiche le nombre de message envoyé par type
+ */
 const nbSentMsgBytype = () => {
   client.query(`select count(*), idList from message group by idModel`, function (err, result) {
     if (err) {

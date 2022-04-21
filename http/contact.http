@@ -1,12 +1,13 @@
+### Affiche le contact {id}
 GET http://localhost:3000/contact/9 HTTP/1.1
 
-###
+### Affiche tous les contacts
 GET http://localhost:3000/getContact HTTP/1.1
 
-###
+### Supprime le contact {id}
 DELETE http://localhost:3000/deleteContact/1 HTTP/1.1
 
-###
+### Ajoute le contact
 POST http://localhost:3000/addContact HTTP/1.1
 content-type: application/json
 
@@ -16,5 +17,5 @@ content-type: application/json
     "mail": "z.megnouche@gmail.com"
 }
 
-###
+### Modifie le nom de contact
 PUT http://localhost:3000/updateContact/Zinedine/Yvan HTTP/1.1
