@@ -1,3 +1,5 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiY3JvbiIsImNyZWF0aW9uRGF0ZSI6IjIwMjItMDQtMjEiLCJpYXQiOjE2NTA1NjYxOTIsImV4cCI6MTY1MDY1MjU5Mn0.lZOHKhU1S3Dwwshxk33cMPUAPJUdMhbZRpE4t0qzUBQ
+
 ### affiche la liste des models
 GET http://localhost:3000/model HTTP/1.1
 

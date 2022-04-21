@@ -92,17 +92,15 @@ const updateMessage = (id, content) => {
  * Affiche les id de message dont l'etat est 'pret'
  */
 const isReadyToSend = () => {
-  client.query(`select message.id from message inner join state on idState = state.id where state.label = 'pret'`, function (err, result) {
+  client.query(`update message set idState = 1 where idState = 3`, function (err, result) {
     if (err) {
-      return console.error('error running query', err)
+      return false
     }
-    if (result.rowCount == 0) {
-      return console.error("Pas de message prêt à être envoyé.")
-    }
-    console.log(`Id de messages prêt a être envoyé: `)
-    console.log(result.rows)
-    return result.rows
+    console.log("success")
+    return true
   })
+
+
 }
 
 export { loadMessageByid, deleteMessage, loadMessage, createMessage, updateMessage, isReadyToSend }

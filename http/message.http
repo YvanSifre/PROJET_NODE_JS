@@ -1,14 +1,24 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiY3JvbiIsImNyZWF0aW9uRGF0ZSI6IjIwMjItMDQtMjEiLCJpYXQiOjE2NTA1NjYxOTIsImV4cCI6MTY1MDY1MjU5Mn0.lZOHKhU1S3Dwwshxk33cMPUAPJUdMhbZRpE4t0qzUBQ
+
 ### Affiche tous les messages
 GET http://localhost:3000/message HTTP/1.1
+Authorization: Bearer {{token}}
 
 ### Affiche le messsage {id}
 GET http://localhost:3000/message/1 HTTP/1.1
+Authorization: Bearer {{token}}
+
+### Affiche les messsage pret
+GET http://localhost:3000/messagepret HTTP/1.1
+Authorization: Bearer {{token}}
 
 ### Supprime le message {id}
 DELETE http://localhost:3000/message/1 HTTP/1.1
+Authorization: Bearer {{token}}
 
 ### Ajout d'un message
 POST http://localhost:3000/addMessage HTTP/1.1
+Authorization: Bearer {{token}}
 content-type: application/json
 
 {

@@ -4,6 +4,7 @@ import { addList, loadAllList, deleteList, loadList, updateList } from "./contro
 import { loadState, loadStateByid, createState, deleteState, updateState } from "./controllers/state/state.mjs"
 import { totalContact, totalList, mostRecentMessage, nbSentMsg, nbSentMsgBytype } from "./controllers/stats/stats.mjs"
 import { loadTemplateById, loadTemplate, deleteTemplate, addTemplate, updateTemplate } from "./controllers/model-template/model-template.mjs"
+import { auth } from './controllers/auth/index.mjs'
 
 import express from 'express'
 
@@ -331,6 +332,16 @@ router.get('/derniermessage', (req, res) => {
   }
 })
 
+router.get('/messagepret', (req, res) => {
+  try {
+    res.send(isReadyToSend())
+  } catch (error) {
+    res.send(404)
+  }
+})
+
+
+
 router.get('/totalListe', (req, res) => {
   try {
     res.send(totalList())
@@ -347,6 +358,22 @@ router.get('/nbMsgType', (req, res) => {
   }
 })
 
+
+router.post('/auth', (req, res) => {
+  const { name, password } = req.body
+
+  const r = auth(name, password)
+
+  if (!r) {
+    res.status(400)
+    res.send('Unauthorized')
+    res.end()
+
+    return
+  }
+
+  res.send(r)
+})
 
 
 export default router

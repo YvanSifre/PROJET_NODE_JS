@@ -1,14 +1,20 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiY3JvbiIsImNyZWF0aW9uRGF0ZSI6IjIwMjItMDQtMjEiLCJpYXQiOjE2NTA1NjYxOTIsImV4cCI6MTY1MDY1MjU5Mn0.lZOHKhU1S3Dwwshxk33cMPUAPJUdMhbZRpE4t0qzUBQ
+
 ### Affiche le contact {id}
 GET http://localhost:3000/contact/9 HTTP/1.1
+Authorization: Bearer {{token}}
 
 ### Affiche tous les contacts
 GET http://localhost:3000/getContact HTTP/1.1
+Authorization: Bearer {{token}}
 
 ### Supprime le contact {id}
 DELETE http://localhost:3000/deleteContact/1 HTTP/1.1
+Authorization: Bearer {{token}}
 
 ### Ajoute le contact
 POST http://localhost:3000/addContact/test/1 HTTP/1.1
+Authorization: Bearer {{token}}
 content-type: application/json
 
 {
