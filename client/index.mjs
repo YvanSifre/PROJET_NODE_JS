@@ -24,9 +24,8 @@ const getToken = async () => {
 }
 
 /**
- * LISTE LES PRODUITS AVEC UNE PROMISE
+ * ENVOI DES MESSAGES PRETS A L'ENVOI
  */
-
 
 const getReadyMessages = async () => {
 

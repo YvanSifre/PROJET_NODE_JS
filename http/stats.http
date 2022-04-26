@@ -1,15 +1,21 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiY3JvbiIsImNyZWF0aW9uRGF0ZSI6IjIwMjItMDQtMjEiLCJpYXQiOjE2NTA1NjYxOTIsImV4cCI6MTY1MDY1MjU5Mn0.lZOHKhU1S3Dwwshxk33cMPUAPJUdMhbZRpE4t0qzUBQ
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiY3JvbiIsImNyZWF0aW9uRGF0ZSI6IjIwMjItMDQtMjEiLCJpYXQiOjE2NTA5NjcxNjAsImV4cCI6MTY1MTA1MzU2MH0.ge25mV5HCYrt70b6wTsL9G0zKP6PS25TTTznq3x_COY
 
 ###Total de contact
 GET  http://localhost:3000/nbContact HTTP/1.1
+Authorization: Bearer {{token}}
 
 ###Total de liste
 GET  http://localhost:3000/totalListe HTTP/1.1
+Authorization: Bearer {{token}}
+
 ###Total de message envoyés
 GET  http://localhost:3000/nbMessageEnvoye HTTP/1.1
+Authorization: Bearer {{token}}
 
 ###Dernier message envoyé
 GET  http://localhost:3000/derniermessage HTTP/1.1
+Authorization: Bearer {{token}}
 
 ###Nombre de message par type
 GET  http://localhost:3000/nbMsgType HTTP/1.1
+Authorization: Bearer {{token}}

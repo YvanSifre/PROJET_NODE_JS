@@ -2,15 +2,20 @@
 
 ###Ajout/Création d'un état de message
 POST http://localhost:3000/state/attente HTTP/1.1
+Authorization: Bearer {{token}}
 
 ### Suppression d'un etat
 DELETE http://localhost:3000/state/9 HTTP/1.1
+Authorization: Bearer {{token}}
 
 ###Liste des états
 GET http://localhost:3000/state HTTP/1.1
+Authorization: Bearer {{token}}
 
 ###Label de l'etat en fonction de son id
 GET http://localhost:3000/state/10 HTTP/1.1
+Authorization: Bearer {{token}}
 
 ###Met a jour un etat
 PUT  http://localhost:3000/state/299?label=pret HTTP/1.1
+Authorization: Bearer {{token}}

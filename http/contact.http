@@ -1,7 +1,7 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiY3JvbiIsImNyZWF0aW9uRGF0ZSI6IjIwMjItMDQtMjEiLCJpYXQiOjE2NTA1NjYxOTIsImV4cCI6MTY1MDY1MjU5Mn0.lZOHKhU1S3Dwwshxk33cMPUAPJUdMhbZRpE4t0qzUBQ
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiY3JvbiIsImNyZWF0aW9uRGF0ZSI6IjIwMjItMDQtMjEiLCJpYXQiOjE2NTA5NjY2NjUsImV4cCI6MTY1MTA1MzA2NX0.3LlJMM2_y7fI9bFQ4SacUl6CfWv9k_tyo0jzUDqoHKU
 
 ### Affiche le contact {id}
-GET http://localhost:3000/contact/9 HTTP/1.1
+GET http://localhost:3000/contact/1 HTTP/1.1
 Authorization: Bearer {{token}}
 
 ### Affiche tous les contacts
@@ -18,10 +18,11 @@ Authorization: Bearer {{token}}
 content-type: application/json
 
 {
-    "name": "George",
+    "name": "Chris",
     "firstname": "Paul",
-    "mail": "p.george@gmail.com"
+    "mail": "c.george@gmail.com"
 }
 
 ### Modifie le nom de contact
 PUT http://localhost:3000/updateContact/Zinedine/Yvan HTTP/1.1
+Authorization: Bearer {{token}}

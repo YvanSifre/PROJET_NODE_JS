@@ -1,16 +1,20 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiY3JvbiIsImNyZWF0aW9uRGF0ZSI6IjIwMjItMDQtMjEiLCJpYXQiOjE2NTA1NjYxOTIsImV4cCI6MTY1MDY1MjU5Mn0.lZOHKhU1S3Dwwshxk33cMPUAPJUdMhbZRpE4t0qzUBQ
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiY3JvbiIsImNyZWF0aW9uRGF0ZSI6IjIwMjItMDQtMjEiLCJpYXQiOjE2NTA5NjY2NjUsImV4cCI6MTY1MTA1MzA2NX0.3LlJMM2_y7fI9bFQ4SacUl6CfWv9k_tyo0jzUDqoHKU
 
 ### Affiche la liste {1}
 GET http://localhost:3000/contactList/1 HTTP/1.1
+Authorization: Bearer {{token}}
 
 ### Affiche toutes les listes
 GET http://localhost:3000/getList HTTP/1.1
+Authorization: Bearer {{token}}
 
 ### Supprime la liste {id}
 DELETE http://localhost:3000/deleteList/3 HTTP/1.1
+Authorization: Bearer {{token}}
 
 ### Ajout d'une liste
 POST  http://localhost:3000/addList HTTP/1.1
+Authorization: Bearer {{token}}
 content-type: application/json
 
 {
@@ -20,3 +24,4 @@ content-type: application/json
 
 ### Modification du nom de la liste
 PUT http://localhost:3000/updateList/Travail/Boulot HTTP/1.1
+Authorization: Bearer {{token}}
